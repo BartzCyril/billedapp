@@ -19,7 +19,10 @@ export default class NewBill {
     e.preventDefault()
     const input = this.document.querySelector(`input[data-testid="file"]`)
     const file = input.files[0]
-    if (!/\.(jpg|jpeg|png)$/.test(file.type)) {
+    if (file.type !== "image/png" && 
+        file.type !== "image/jpeg" &&
+        file.type !== "image/jpg"
+    ) {
       input.value = ""
       alert('Veuillez choisir un fichier avec une extension jpg, jpeg ou png')
       return
