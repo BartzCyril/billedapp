@@ -84,7 +84,6 @@ describe("Given I am connected as an employee", () => {
     })
 
     test("the bills are updated", async () => {
-      //simulation création d'une nouvelle note de frais
       const newBill = new NewBill({
         document,
         onNavigate,
