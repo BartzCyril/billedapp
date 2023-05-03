@@ -13,28 +13,30 @@ export default class NewBill {
     this.fileUrl = null
     this.fileName = null
     this.billId = null
+    this.formData = new FormData()
     new Logout({ document, localStorage, onNavigate })
   }
   handleChangeFile = e => {
     e.preventDefault()
     const input = this.document.querySelector(`input[data-testid="file"]`)
     const file = input.files[0]
-    if (!/\.(jpg|jpeg|png)$/.test(file.type)) {
+    if (file.type !== "image/png" && 
+        file.type !== "image/jpeg" &&
+        file.type !== "image/jpg"
+    ) {
       input.value = ""
       alert('Veuillez choisir un fichier avec une extension jpg, jpeg ou png')
       return
     }
     const filePath = e.target.value.split(/\\/g)
     const fileName = filePath[filePath.length-1]
-    const formData = new FormData()
     const email = JSON.parse(localStorage.getItem("user")).email
-    formData.append('file', file)
-    formData.append('email', email)
-
+    this.formData.append('file', file)
+    this.formData.append('email', email)
     this.store
       .bills()
       .create({
-        data: formData,
+        data: this.formData,
         headers: {
           noContentType: true
         }

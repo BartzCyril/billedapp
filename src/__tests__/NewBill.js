@@ -13,7 +13,7 @@ import BillsUI from "../views/BillsUI.js";
 
 describe("Given I am connected as an employee", () => {
   describe("When I am on NewBill Page", () => {
-    test("Then ...", () => {
+    test("Then the content title should display Envoyer une note de frais to indicate that the user is on the correct page ", () => {
       const html = NewBillUI()
       document.body.innerHTML = html
       const title = document.querySelector('.content-title').textContent;

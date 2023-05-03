@@ -273,6 +273,7 @@ describe("Given I am a user connected as Admin", () => {
       root.setAttribute("id", "root")
       document.body.appendChild(root)
       router()
+      window.onNavigate(ROUTES_PATH.Dashboard)
     })
     test("fetches bills from an API and fails with 404 message error", async () => {
 
